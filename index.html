@@ -10,16 +10,68 @@
       <div id="buscador">
         <input type="text" placeholder="Buscar..." id="barra-busqueda" />
         <button id="boto-buscar">Buscar</button>
+
+        <div>
+          <button class="filte-bloc">Bloc 1</button>
+          <button class="filte-bloc">Bloc 2</button>
+          <button class="filte-bloc">Bloc 3</button>
+        </div>
       </div>
       <div id="resultados-busqueda"></div>
     </aside>
     <main>
       <article>
-        <h1>BLOC 1</h1>
-        <section>
+        <section id="bloc1">
+          <h1>BLOC 1</h1>
           <div class="preguntes">
-            <h4>Pregunta 1</h4>
-            <p>resposta</p>
+            <h4 class="enunciat">Pregunta 1: Escriu la sintaxi bàsica d'un bloc try...catch.</h4>
+            <p class="p-resposta">
+              La declaració try…catch assenyala un bloc d’instruccions a
+              intentar (try), i específica una resposta si es produeix una
+              excepció (catch).
+            </p>
+            <div class="codi">
+              <p class="p-codi">
+                try { nonExistentFunction(); } catch (error) {
+                console.error(error); }
+              </p>
+            </div>
+          </div>
+
+          <div class="preguntes">
+            <h4  class="enunciat">
+              Pregunta 2: Per comprovar si una petició fetch ha anat bé abans de
+              llegir les dades, cal mirar la propietat response.ok o el
+              response.status.
+            </h4>
+            <p class="p-resposta">
+              La declaració try…catch assenyala un bloc d’instruccions a
+              intentar (try), i específica una resposta si es produeix una
+              excepció (catch).
+            </p>
+            <div class="codi">
+              <p class="p-codi"> 
+                Response.ok (millor pràctica): fetch("products.json")
+                .then((response) => { if (!response.ok) { throw new Error(`HTTP
+                error: ${response.status}`); } return response.json(); })
+                .then((json) => initialize(json)) .catch((err) =>
+                console.error(`Fetch problem: ${err.message}`));
+                Response.status: fetch('https://api.exemple.com/dades')
+                .then(response => { if (response.status !== 200) { throw new
+                Error(`Codi incorrecte: ${response.status}`); } return
+                response.json(); }) .then(data => console.log(data))
+                .catch(error => console.error(error));
+              </p>
+            </div>
+          </div>
+        </section>
+      </article>
+      <article>
+        <section id="bloc2">
+          <h1>BLOC 2</h1>
+          <div class="preguntes">
+            <h4 class="enunciat">Pregunta 1</h4>
+            <p class="p-resposta">resposta</p>
             <div class="codi">
               <p>codi</p>
             </div>
@@ -27,29 +79,19 @@
         </section>
       </article>
       <article>
-        <h1>BLOC 2</h1>
-        <section>
+        <section id="bloc3">
+          <h1>BLOC 3</h1>
           <div class="preguntes">
-            <h4>Pregunta 1</h4>
-            <p>resposta</p>
+            <h4 class="enunciat">Pregunta 1</h4>
+            <p class="p-resposta">resposta</p>
             <div class="codi">
-              <p>codi</p>
-            </div>
-          </div>
-        </section>
-      </article>
-      <article>
-        <h1>BLOC 3</h1>
-        <section>
-          <div class="preguntes">
-            <h4>Pregunta 1</h4>
-            <p>resposta</p>
-            <div class="codi">
-              <p>codi</p>
+              <p class="p-codi">codi</p>
             </div>
           </div>
         </section>
       </article>
     </main>
+
+    <script src="./Scripts/script.js"></script>
   </body>
 </html>
