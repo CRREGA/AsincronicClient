@@ -79,14 +79,23 @@ botoCercaResposta.addEventListener("click",() => {
 
 botoCercaCodi.addEventListener("click",() => {
     preguntes.forEach(element => {
-
-        let aux = element.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild;
-
-        console.log(aux);
+        var aux;
         
-        if(aux.textContent.toLowerCase().includes(cercaCodi.value.toLowerCase())){
-            element.style.display = "block";
-        } else {
+        try {
+            aux = element.firstElementChild.nextElementSibling.nextElementSibling.firstElementChild;
+
+            console.log(aux);
+
+            if(aux !== null) {
+                if(aux.textContent.toLowerCase().includes(cercaCodi.value.toLowerCase())){
+                    element.style.display = "block";
+                } else {
+                    element.style.display = "none";
+                }
+            } else {
+                element.style.display = "none";
+            }
+        } catch (error) {
             element.style.display = "none";
         }
         
@@ -94,6 +103,10 @@ botoCercaCodi.addEventListener("click",() => {
 });
 
 buttonNeteja.addEventListener("click", () => {
+    cercaEnunciat.value = "";
+    cercaResposta.value = "";
+    cercaCodi.value = "";
+
     preguntes.forEach(element => {
         element.style.display = "block";
     });
