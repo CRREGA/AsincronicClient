@@ -1,97 +1,1263 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Estrada Async</title>
-  </head>
-  <body>
-    <aside>
-      <div id="buscador">
-        <input type="text" placeholder="Buscar..." id="barra-busqueda" />
-        <button id="boto-buscar">Buscar</button>
+<html lang="ca">
 
-        <div>
-          <button class="filte-bloc">Bloc 1</button>
-          <button class="filte-bloc">Bloc 2</button>
-          <button class="filte-bloc">Bloc 3</button>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estrada Async</title>
+</head>
+
+<body>
+  <aside>
+    <div id="buscador">
+      <input type="text" placeholder="Buscar..." id="barra-busqueda" />
+      <button id="boto-buscar">Buscar</button>
+
+      <div>
+        <button class="filte-bloc">Bloc 1</button>
+        <button class="filte-bloc">Bloc 2</button>
+        <button class="filte-bloc">Bloc 3</button>
       </div>
-      <div id="resultados-busqueda"></div>
-    </aside>
-    <main>
-      <article>
-        <section id="bloc1">
-          <h1>BLOC 1</h1>
-          <div class="preguntes">
-            <h4 class="enunciat">Pregunta 1: Escriu la sintaxi bàsica d'un bloc try...catch.</h4>
-            <p class="p-resposta">
-              La declaració try…catch assenyala un bloc d’instruccions a
-              intentar (try), i específica una resposta si es produeix una
-              excepció (catch).
-            </p>
-            <div class="codi">
-              <p class="p-codi">
-                try { nonExistentFunction(); } catch (error) {
-                console.error(error); }
-              </p>
-            </div>
-          </div>
+    </div>
+    <div id="resultados-busqueda"></div>
+  </aside>
+  <main>
+    <article>
+      <section id="bloc1">
+        <h1>BLOC 1: Fonaments de l'asincronia i AJAX</h1>
 
-          <div class="preguntes">
-            <h4  class="enunciat">
-              Pregunta 2: Per comprovar si una petició fetch ha anat bé abans de
-              llegir les dades, cal mirar la propietat response.ok o el
-              response.status.
-            </h4>
-            <p class="p-resposta">
-              La declaració try…catch assenyala un bloc d’instruccions a
-              intentar (try), i específica una resposta si es produeix una
-              excepció (catch).
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 1: Què vol dir que JavaScript és "monofil" (single-threaded)?
+          </h4>
+          <p class="p-resposta">
+            Que només pot executar una instrucció alhora en un únic fil d’execució (call stack). No pot fer dues
+            operacions de processament de dades simultànies.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              console.log("Primer");<br />
+              console.log("Segon");<br />
+              // El fil d'execució no pot passar al segon fins que acabi el primer.
             </p>
-            <div class="codi">
-              <p class="p-codi"> 
-                Response.ok (millor pràctica): fetch("products.json")
-                .then((response) => { if (!response.ok) { throw new Error(`HTTP
-                error: ${response.status}`); } return response.json(); })
-                .then((json) => initialize(json)) .catch((err) =>
-                console.error(`Fetch problem: ${err.message}`));
-                Response.status: fetch('https://api.exemple.com/dades')
-                .then(response => { if (response.status !== 200) { throw new
-                Error(`Codi incorrecte: ${response.status}`); } return
-                response.json(); }) .then(data => console.log(data))
-                .catch(error => console.error(error));
-              </p>
-            </div>
           </div>
-        </section>
-      </article>
-      <article>
-        <section id="bloc2">
-          <h1>BLOC 2</h1>
-          <div class="preguntes">
-            <h4 class="enunciat">Pregunta 1</h4>
-            <p class="p-resposta">resposta</p>
-            <div class="codi">
-              <p>codi</p>
-            </div>
-          </div>
-        </section>
-      </article>
-      <article>
-        <section id="bloc3">
-          <h1>BLOC 3</h1>
-          <div class="preguntes">
-            <h4 class="enunciat">Pregunta 1</h4>
-            <p class="p-resposta">resposta</p>
-            <div class="codi">
-              <p class="p-codi">codi</p>
-            </div>
-          </div>
-        </section>
-      </article>
-    </main>
+        </div>
 
-    <script src="./Scripts/script.js"></script>
-  </body>
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 2: Quina és la diferència principal entre execució síncrona i asíncrona?
+          </h4>
+          <p class="p-resposta">
+            Síncrona: el codi s’executa línia a línia, bloquejant fins acabar cada tasca. Asíncrona: permet delegar
+            tasques (com demanar dades) i continuar executant la resta del codi sense esperar que la tasca delegada
+            acabi.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // Síncron: Espera 3 segons bloquejat<br />
+              console.log("Inici");<br />
+              esperar3Segons(); <br />
+              console.log("Fi");<br />
+              <br />
+              // Asíncron: No es bloqueja<br />
+              console.log("Inici");<br />
+              setTimeout(() => console.log("Tascompletada"), 3000);<br />
+              console.log("Fi"); // S'executa immediatament després de l'Inici
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 3: Què és un "callback"?
+          </h4>
+          <p class="p-resposta">
+            Una funció que es passa com a argument a una altra funció i s’executa més tard, normalment quan una operació
+            asíncrona ha acabat.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              function processarSalutacio(nom, callback) {<br />
+              &emsp;console.log("Hola " + nom);<br />
+              &emsp;callback();<br />
+              }<br />
+              <br />
+              processarSalutacio("Dani", () => {<br />
+              &emsp;console.log("El callback s'ha executat!");<br />
+              });
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 4: Què s'entén per "Callback Hell"?
+          </h4>
+          <p class="p-resposta">
+            Codi amb múltiples callbacks imbricats un dins de l'altre, fent que sigui molt difícil de llegir, entendre i
+            mantenir (també anomenat "Pyramid of Doom").
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              pas1(() => {<br />
+              &emsp;pas2(() => {<br />
+              &emsp;&emsp;pas3(() => {<br />
+              &emsp;&emsp;&emsp;pas4(() => {<br />
+              &emsp;&emsp;&emsp;&emsp;console.log("Finalment!");<br />
+              &emsp;&emsp;&emsp;});<br />
+              &emsp;&emsp;});<br />
+              &emsp;});<br />
+              });
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 5: Per què el codi síncron pot ser un perill per a la UI d'un navegador?
+          </h4>
+          <p class="p-resposta">
+            Perquè si una tasca síncrona triga molt (com un bucle infinit o una petició pesada), bloqueja el fil
+            principal i congela la interfície. L'usuari no pot clicar botons ni fer scroll.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // AQUEST CODI CONGELA EL NAVEGADOR:<br />
+              btn.addEventListener("click", () => {<br />
+              &emsp;while(true) {<br />
+              &emsp;&emsp;// Bucle infinit: la UI no respondrà mai més<br />
+              &emsp;}<br />
+              });
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 6: Què vol dir que una funció és "non-blocking"?
+          </h4>
+          <p class="p-resposta">
+            Que quan s'executa, inicia l'operació (com demanar dades a un servidor) i retorna el control al programa
+            immediatament, sense bloquejar el fil principal mentre espera la resposta.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // setTimeout és non-blocking<br />
+              setTimeout(() => console.log("Han passat 2s"), 2000);<br />
+              console.log("Jo no m'he bloquejat!");
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 7: Quin mètode clàssic de JS serveix per executar un codi després d'un temps determinat?
+          </h4>
+          <p class="p-resposta">
+            El mètode clàssic és setTimeout().
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              setTimeout(() => {<br />
+              &emsp;console.log("Això s'executa als 5 segons");<br />
+              }, 5000);
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 8: En l'asincronia, què és l'"Event Loop"?
+          </h4>
+          <p class="p-resposta">
+            És el mecanisme que gestiona l’execució del codi asíncron. Comprova constantment si el Call Stack està buit;
+            si ho està, agafa el primer callback de la cua (Callback Queue) i el mou al Call Stack per executar-lo.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              console.log("1");<br />
+              setTimeout(() => console.log("2"), 0);<br />
+              console.log("3");<br />
+              <br />
+              // Ordre: 1, 3 i finalment el 2 via Event Loop.
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 9: Cert o Fals: L'asincronia serveix per fer dues coses exactament al mateix mil·lisegon en un sol
+            fil.
+          </h4>
+          <p class="p-resposta">
+            <b>Fals.</b> JavaScript segueix sent monofil. El que fa l'asincronia és "intercalar" tasques. Mentre esperem
+            una resposta externa, executem altres coses, però mai dues línies de codi JS al mateix instant real.
+          </p>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 10: Com s'anomena la pila on es guarden les funcions que esperen a ser executades després d'una
+            tasca asíncrona?
+          </h4>
+          <p class="p-resposta">
+            S'anomena <b>Callback Queue</b> (o Task Queue). Les promeses fan servir una cua prioritària anomenada
+            Microtask Queue.
+          </p>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 11: Què és l'objecte XMLHttpRequest (XHR) i quin era el seu paper fonamental fa uns anys?
+          </h4>
+          <p class="p-resposta">
+            És un objecte de l'API del navegador que permet fer peticions HTTP de manera asíncrona. El seu paper va ser
+            fonamental per permetre actualitzar parts d'una web sense haver de recarregar la pàgina sencera.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              const xhr = new XMLHttpRequest();<br />
+              xhr.open("GET", "https://api.exemple.com/dades");<br />
+              xhr.send();
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 12: Veritat o Mentida: Tot i dir-se XMLHttpRequest, aquest objecte només permet enviar i rebre
+            dades en format XML.
+          </h4>
+          <p class="p-resposta">
+            <b>Mentida.</b> Tot i el seu nom, pot treballar amb JSON, text pla, HTML i altres formats. Avui dia el
+            format més comú és JSON.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              xhr.onload = function() {<br />
+              &emsp;const dades = JSON.parse(xhr.responseText);<br />
+              &emsp;console.log(dades);<br />
+              };
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 13: Com que l'XHR no funcionava amb Promeses, quin esdeveniment s'havia d'escoltar per saber si el
+            servidor ens havia respost?
+          </h4>
+          <p class="p-resposta">
+            S'havia d'escoltar l'esdeveniment <b>onreadystatechange</b> (o el més modern onload).
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              xhr.onreadystatechange = function() {<br />
+              &emsp;// Es crida cada vegada que canvia l'estat<br />
+              };
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 14: En una petició XHR clàssica, què significava comprovar que la propietat readyState === 4?
+          </h4>
+          <p class="p-resposta">
+            Significa que l'operació s’ha completat correctament i la resposta del servidor ha estat rebuda totalment.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              if (xhr.readyState === 4 && xhr.status === 200) {<br />
+              &emsp;console.log("Tot correcte!");<br />
+              }
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 15: Quin era el principal desavantatge d'escriure codi amb XMLHttpRequest comparat amb la Fetch API
+            moderna?
+          </h4>
+          <p class="p-resposta">
+            Té una sintaxi molt més complexa, verbosa i difícil de seguir. A més, no suporta Promeses de forma nativa,
+            cosa que obliga a fer servir molts callbacks i dificulta la gestió d'errors.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // XHR és molt llarg per a una simple petició:<br />
+              const xhr = new XMLHttpRequest();<br />
+              xhr.open("GET", url);<br />
+              xhr.onreadystatechange = function() { ... };<br />
+              xhr.send();
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 16: Què signifiquen les sigles AJAX?
+          </h4>
+          <p class="p-resposta">
+            Asynchronous JavaScript And XML. És la tècnica de carregar dades en segon pla.
+          </p>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 17: Cal recarregar la pàgina sencera quan fem servir AJAX?
+          </h4>
+          <p class="p-resposta">
+            <b>No.</b> Aquest és precisament el seu objectiu: actualitzar només una part de la interfície amb les noves
+            dades rebudes.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              fetch('/nova-noticia')<br />
+              &emsp;.then(res => res.text())<br />
+              &emsp;.then(html => {<br />
+              &emsp;&emsp;document.getElementById('noticies').innerHTML += html;<br />
+              &emsp;});
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 18: Què és la Fetch API (definició bàsica)?
+          </h4>
+          <p class="p-resposta">
+            És una interfície moderna i nativa de JavaScript per fer peticions HTTP. A diferència d'XHR, està totalment
+            basada en Promeses.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              fetch('https://api.test.com/user')<br />
+              &emsp;.then(response => console.log("Resposta rebuda"));
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 19: Per què fetch() és millor que l'antic XMLHttpRequest?
+          </h4>
+          <p class="p-resposta">
+            Perquè el codi és molt més net, llegible i curt. A més, en estar basat en Promeses, permet fer servir la
+            sintaxi async/await, que fa que el codi asíncron sembli gairebé síncron.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // Molt més net que XHR:<br />
+              const res = await fetch(url);<br />
+              const data = await res.json();
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 20: Quina dada retorna fetch() en primera instància quan l'executem?
+          </h4>
+          <p class="p-resposta">
+            Retorna una <b>Promise</b> que, quan es resol, conté un objecte de tipus <b>Response</b>. Aquest objecte
+            conté informació sobre la resposta (status, headers), però no les dades directament.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              const promesa = fetch(url);<br />
+              console.log(promesa); // Imprimeix: Promise {&lt;pending&gt;}
+            </p>
+          </div>
+        </div>
+
+      </section>
+    </article>
+    <article>
+      <section id="bloc2">
+        <h1>BLOC 2: El motor modern - Promeses i Async/Await</h1>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 1: Què és una Promise en JavaScript?
+          </h4>
+          <p class="p-resposta">
+            Una Promise (promesa) és un objecte que representa l'eventual finalització (o el fracàs) d'una operació
+            asíncrona i el seu valor resultant. És com un "val" per a un valor que encara no coneixem, però que rebrem
+            en el futur.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              const promesa = new Promise((resolve, reject) => { <br />
+              &emsp;// L'operació asíncrona passa aquí dins<br />
+              });
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 2: Quins són els 3 estats d'una promesa?
+          </h4>
+          <p class="p-resposta">
+          <ul>
+            <li><b>Pending (Pendent):</b> Estat inicial. La promesa encara està en procés i no s'ha resolt ni rebutjat.
+            </li>
+            <li><b>Fulfilled (Complerta / Resolta):</b> L'operació ha acabat correctament i retorna un resultat.</li>
+            <li><b>Rejected (Rebutjada):</b> L'operació ha fallat i retorna un error o motiu del rebuig.</li>
+          </ul>
+          </p>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 3: Què vol dir que una promesa està "Pending"?
+          </h4>
+          <p class="p-resposta">
+            Una Promise en estat pending vol dir que encara està pendent de resoldre's. És a dir: ni ha acabat bé
+            (fulfilled) ni ha fallat (rejected).
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              const promesa = new Promise((resolve, reject) => {<br />
+              &emsp;setTimeout(() => {<br />
+              &emsp;&emsp;resolve("Fet!");<br />
+              &emsp;}, 2000);<br />
+              });<br />
+              <br />
+              // Què passa?<br />
+              // just crear-la → pending<br />
+              // després de 2 segons → fulfilled
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 4: Com es passa de "Pending" a un estat d'èxit (Fulfilled)?
+          </h4>
+          <p class="p-resposta">
+            Es passa a l'estat Fulfilled quan cridem la funció interna resolve(valor). Aquesta funció es passa com a
+            primer argument al constructor de la promesa i, en executar-se, indica que l'operació ha acabat
+            correctament.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              const guanyarLoteria = new Promise((resolve) => {<br />
+              &emsp;setTimeout(() => {<br />
+              &emsp;&emsp;resolve("Has guanyat 1000€!"); // Passem a estat Fulfilled<br />
+              &emsp;}, 1000);<br />
+              });
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 5: Quin mètode s'utilitza per recollir el resultat d'una promesa quan va bé (.then)?
+          </h4>
+          <p class="p-resposta">
+            S'utilitza el mètode .then(). Aquest mètode rep una funció callback que s'executa automàticament quan la
+            promesa es resol.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              guanyarLoteria.then((premi) => {<br />
+              &emsp;console.log(premi); // Imprimeix: "Has guanyat 1000€!"<br />
+              });
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 6: Com es gestiona un error en una promesa sense fer servir async/await (.catch)?
+          </h4>
+          <p class="p-resposta">
+            Per gestionar aquests errors es fa servir molt el catch(). Com funciona? Tenim dos elements, el .then
+            (gestiona el resultat correcte) i el .catch (captura qualsevol error que passi en qualsevol lloc de la
+            cadena).
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              Promise.resolve(10)<br />
+              &emsp;.then(num => {<br />
+              &emsp;&emsp;if (num > 5) {<br />
+              &emsp;&emsp;&emsp;throw new Error('Número massa gran');<br />
+              &emsp;&emsp;}<br />
+              &emsp;&emsp;return num;<br />
+              &emsp;})<br />
+              &emsp;.then(result => {<br />
+              &emsp;&emsp;console.log(result);<br />
+              &emsp;})<br />
+              &emsp;.catch(err => {<br />
+              &emsp;&emsp;console.error(err.message);<br />
+              &emsp;});
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 7: Pots encadenar diversos .then()? Si Per què serveix?
+          </h4>
+          <p class="p-resposta">
+            Cada .then() retorna una nova Promise, així que pots seguir encadenant-ne tantes com vulguis. Quan acaba un
+            comença l'altre. Serveix per processar dades pas a pas (cada pas transforma o utilitza el resultat
+            anterior), evitar el "callback hell", i controlar fluxos asíncrons.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              fetch('/api/data')<br />
+              &emsp;.then(response => response.json())<br />
+              &emsp;.then(data => {<br />
+              &emsp;&emsp;console.log(data);<br />
+              &emsp;&emsp;return data.items;<br />
+              &emsp;})<br />
+              &emsp;.then(items => {<br />
+              &emsp;&emsp;console.log(items);<br />
+              &emsp;});<br />
+              <br />
+              login(user)<br />
+              &emsp;.then(session => getProfile(session))<br />
+              &emsp;.then(profile => loadDashboard(profile))<br />
+              &emsp;.catch(error => console.error(error));
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 8: Què retorna sempre un .then()?
+          </h4>
+          <p class="p-resposta">
+            Un .then() sempre retorna una nova promesa. Això és el que permet l'encadenament (chaining). Si la funció
+            dins del then() retorna un valor simple, aquest valor s'embolcalla automàticament en una promesa resolta.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              guanyarLoteria<br />
+              &emsp;.then(valor => valor.toUpperCase()) // Retorna promesa amb text en majúscules<br />
+              &emsp;.then(textGran => console.log(textGran)); // Imprimeix el resultat de l'anterior
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 9: Per què serveix el mètode Promise.all()?
+          </h4>
+          <p class="p-resposta">
+            Serveix per gestionar múltiples promeses simultàniament. Rep un array de promeses i retorna una única
+            promesa que es resol quan totes les promeses de l'array s'han completat amb èxit. Si una sola falla, tota
+            l'operació falla.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              const p1 = Promise.resolve("Pa");<br />
+              const p2 = Promise.resolve("Formatge");<br />
+              <br />
+              Promise.all([p1, p2]).then((compra) => {<br />
+              &emsp;console.log(`Ja tinc el ${compra[0]} i el ${compra[1]}`);<br />
+              &emsp;// "Ja tinc el Pa i el Formatge"<br />
+              });
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 10: Què passa si una de les promeses dins de Promise.all() falla?
+          </h4>
+          <p class="p-resposta">
+            Si una de les promeses falla el Promise.all() farà un reject, que vol dir això, retorna l'error de la
+            primera promesa, però ignorarà la resta de codi.
+          </p>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 11: Què fa la paraula clau async abans d'una funció?
+          </h4>
+          <p class="p-resposta">
+            1. Fa que la funció sempre retorni una Promise. Encara que tu retornis un valor "normal", JavaScript el
+            converteix automàticament en una Promise.<br>
+            2. Permet usar await dins la funció. Només pots utilitzar await dins d'una funció async.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              async function exemple() {<br />
+              &emsp;return 42;<br />
+              }<br />
+              <br />
+              // És equivalent a:<br />
+              function exemple() {<br />
+              &emsp;return Promise.resolve(42);<br />
+              }<br />
+              <br />
+              async function getData() {<br />
+              &emsp;const response = await fetch('/api/data');<br />
+              &emsp;const data = await response.json();<br />
+              &emsp;return data;<br />
+              }
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 12: Què retorna sempre una funció marcada amb async?
+          </h4>
+          <p class="p-resposta">
+            Quan una funció està marcada amb async, sempre torna una promesa.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              async function saludar() {<br />
+              &emsp;return "Hola";<br />
+              }<br />
+              // saludar() devuelve Promise {&lt;fulfilled&gt;: "Hola"}<br />
+              saludar().then(console.log); // Imprime: "Hola"
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 13: On es pot fer servir la paraula await?
+          </h4>
+          <p class="p-resposta">
+            La paraula clau await només es pot fer servir dins de funcions marcades amb la paraula async (o en el nivell
+            superior de mòduls JavaScript, conegut com top-level await).
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              async function sopar() {<br />
+              &emsp;// Només podem fer servir await aquí dins perquè la funció és 'async'<br />
+              &emsp;const plat = await guanyarLoteria;<br />
+              &emsp;console.log("Anem a sopar gràcies a que: " + plat);<br />
+              }<br />
+              sopar();
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 14: Què fa realment l'await quan troba una promesa?
+          </h4>
+          <p class="p-resposta">
+            1. Pausa l'execució: Para l'execució de la funció async actual en la línia exacta, esperant a que la promesa
+            es resolgui o es rebutgi.<br>
+            2. No bloqueja el fil principal: Encara que sembli que el codi es para, no para el fil principal del
+            navegador o servidor.<br>
+            3. Extreu el resultat: Si la promesa es fulfilled (es resol correctament), await extreu el resultat.<br>
+            4. Llença errors: Si la promesa es rejected, await llença l'excepció directament, permetent al "try catch"
+            actuar.
+          </p>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 15: Com es gestionen els errors dins d'una funció async/await?
+          </h4>
+          <p class="p-resposta">
+            Es resolen envoltant el codi dins del "try catch". Quan la promesa falla await llença l'excepció i aquí
+            actua el "catch".
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              async function getData() {<br />
+              &emsp;try {<br />
+              &emsp;&emsp;const response = await fetch('https://api.example.com/data');<br />
+              &emsp;&emsp;const data = await response.json();<br />
+              &emsp;&emsp;console.log(data);<br />
+              &emsp;} catch (error) {<br />
+              &emsp;&emsp;console.error('Error capturado:', error);<br />
+              &emsp;}<br />
+              }
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 16: Què passa si fas un await d'una funció que no retorna una promesa?
+          </h4>
+          <p class="p-resposta">
+            JavaScript ho torna automàticament com una promesa resolta, per fer-ho el codi pausa breument l'execució de
+            la funció "async" per embolicar el valor. Però no causa errors, el resultat del "await" és el valor mateix.
+            Això fa innecessari l'ús de l'"await" en aquests casos.
+          </p>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 17: Per què async/await es considera millor que els .then() encadenats?
+          </h4>
+          <p class="p-resposta">
+            El principal motiu és la llegibilitat. També evita cadenes llargues i confuses, la gestió d'errors és més
+            clara ja que el try catch és millor, i és ideal per a lògica complexa amb bucles o ifs.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // Amb .then():<br />
+              fetch('/api/data')<br />
+              &emsp;.then(res => res.json())<br />
+              &emsp;.then(data => {<br />
+              &emsp;&emsp;return processData(data);<br />
+              &emsp;})<br />
+              &emsp;.then(result => {<br />
+              &emsp;&emsp;console.log(result);<br />
+              &emsp;})<br />
+              &emsp;.catch(err => console.error(err));<br />
+              <br />
+              // Amb async/await:<br />
+              try {<br />
+              &emsp;const res = await fetch('/api/data');<br />
+              &emsp;const data = await res.json();<br />
+              &emsp;const result = await processData(data);<br />
+              &emsp;console.log(result);<br />
+              } catch (err) {<br />
+              &emsp;console.error(err);<br />
+              }
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 18: Es pot fer servir await fora d'una funció (Top-level await)? En quins casos?
+          </h4>
+          <p class="p-resposta">
+            Sí, sí que es pot, però en casos limitats: 1. Arxiu JS amb mòduls que contingui l'extensió ".mjs". 2. En
+            navegadors moderns, utilitzant &lt;script type="module"&gt;.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // archivo.mjs<br />
+              const data = await fetch("https://api.example.com/data");<br />
+              console.log(await data.json());<br />
+              <br />
+              &lt;script type="module"&gt;<br />
+              &emsp;const res = await fetch("https://api.example.com");<br />
+              &emsp;console.log(await res.json());<br />
+              &lt;/script&gt;
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 19: Com executaries dues funcions asíncrones en paral·lel dins d'una funció async?
+          </h4>
+          <p class="p-resposta">
+            Pots inicialitzar les funcions asíncrones abans de l'await perquè s'executin al mateix temps, o de manera
+            més recomanada, utilitzant Promise.all.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // Forma correcta (paral·lel)<br />
+              async function exemple() {<br />
+              &emsp;const p1 = func1(); // comença<br />
+              &emsp;const p2 = func2(); // comença també<br />
+              &emsp;const a = await p1;<br />
+              &emsp;const b = await p2;<br />
+              &emsp;return [a, b];<br />
+              }<br />
+              <br />
+              // Forma més habitual: Promise.all<br />
+              async function exemple() {<br />
+              &emsp;const [a, b] = await Promise.all([<br />
+              &emsp;&emsp;func1(),<br />
+              &emsp;&emsp;func2()<br />
+              &emsp;]);<br />
+              &emsp;return [a, b];<br />
+              }
+            </p>
+          </div>
+        </div>
+
+      </section>
+    </article>
+    <article>
+      <section id="bloc3">
+        <h1>BLOC 3: Dades, REST API i Entorn</h1>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 40: Escriu la sintaxi bàsica d'un bloc try...catch.
+          </h4>
+          <p class="p-resposta">
+            La declaració try…catch assenyala un bloc d’instruccions a intentar (try), i específica una resposta si es
+            produeix una excepció (catch).
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              try {<br />
+              &emsp;nonExistentFunction(); // Aquesta funció no existeix<br />
+              } catch (error) {<br />
+              &emsp;console.error("S'ha produït un error:", error.message);<br />
+              }
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 41: Com comprovem si una petició fetch ha anat bé (codi 200) abans de llegir les dades?
+            (response.ok)
+          </h4>
+          <p class="p-resposta">
+            Per comprovar si una petició fetch ha anat bé abans de llegir les dades, cal mirar la propietat response.ok
+            (és true si l'estat és entre 200 i 299) o el response.status.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // Amb response.ok (millor pràctica):<br />
+              fetch("products.json")<br />
+              &emsp;.then((response) => {<br />
+              &emsp;&emsp;if (!response.ok) {<br />
+              &emsp;&emsp;&emsp;throw new Error(`HTTP error: ${response.status}`);<br />
+              &emsp;&emsp;}<br />
+              &emsp;&emsp;return response.json();<br />
+              &emsp;})<br />
+              &emsp;.then((json) => console.log(json))<br />
+              &emsp;.catch((err) => console.error(`Fetch problem: ${err.message}`));<br />
+              <br />
+              // Amb response.status:<br />
+              fetch('https://api.exemple.com/dades')<br />
+              &emsp;.then(response => {<br />
+              &emsp;&emsp;if (response.status !== 200) {<br />
+              &emsp;&emsp;&emsp;throw new Error(`Codi incorrecte: ${response.status}`);<br />
+              &emsp;&emsp;}<br />
+              &emsp;&emsp;return response.json();<br />
+              &emsp;});
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 42: Per què necessitem un segon await quan fem response.json()?
+          </h4>
+          <p class="p-resposta">
+            Es necessita perquè és una operació asíncrona. fetch() retorna una Promise amb la resposta HTTP (les
+            capçaleres), però el cos de la resposta pot trigar en descarregar-se completament. response.json() retorna
+            una altra Promise que es resol un cop s'ha llegit i parsejat tot el cos a JSON.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              async function obtenirDades() {<br />
+              &emsp;// 1r await: Esperem a connectar i rebre les capçaleres<br />
+              &emsp;const response = await fetch('https://api.exemple.com/dades');<br />
+              <br />
+              &emsp;// 2n await: Esperem a descarregar el cos i convertir-lo a JSON<br />
+              &emsp;const data = await response.json();<br />
+              &emsp;console.log(data);<br />
+              }
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 43: Com enviaries dades (mètode POST) amb fetch?
+          </h4>
+          <p class="p-resposta">
+            Has d’especificar diverses opcions dins d'un objecte com a segon paràmetre: el mètode HTTP ("POST"), les
+            capçaleres indicant el format de la dada ("Content-Type"), i el cos (body) convertit a text amb
+            JSON.stringify.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              const jsonData = { nom: "Dani", rol: "Estudiant" };<br />
+              <br />
+              const options = {<br />
+              &emsp;method: "POST",<br />
+              &emsp;headers: {<br />
+              &emsp;&emsp;"Content-Type": "application/json"<br />
+              &emsp;},<br />
+              &emsp;body: JSON.stringify(jsonData)<br />
+              };<br />
+              <br />
+              fetch("https://api.exemple.com/usuaris", options)<br />
+              &emsp;.then(res => res.json())<br />
+              &emsp;.then(data => console.log("Creat:", data));
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 44: Què són els "Headers" en una petició fetch?
+          </h4>
+          <p class="p-resposta">
+            Les capçaleres HTTP són informació addicional que s’envia juntament amb la petició per donar context sobre
+            les dades (quin tipus de contingut enviem, tokens d'autenticació, etc.) o definir com s’han d’interpretar.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              const headers = new Headers();<br />
+              headers.set("Content-Type", "application/json");<br />
+              headers.set("Authorization", "Bearer meu_token_secret");<br />
+              <br />
+              // Recórrer i veure les capçaleres<br />
+              for (let [key, value] of headers.entries()) {<br />
+              &emsp;console.log(`Clau: ${key}, Valor: ${value}`);<br />
+              }
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 45: Com podem cancel·lar una petició fetch que triga massa? (AbortController).
+          </h4>
+          <p class="p-resposta">
+            Es fa servir l’API AbortController. Ens dona un objecte 'signal' que passem a les opcions del fetch. Quan
+            volem aturar-ho, cridem la funció controller.abort().
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              const controller = new AbortController();<br />
+              const signal = controller.signal;<br />
+              <br />
+              fetch('https://api.exemple.com/dades', { signal })<br />
+              &emsp;.then(response => response.json())<br />
+              &emsp;.then(data => console.log(data))<br />
+              &emsp;.catch(error => {<br />
+              &emsp;&emsp;if (error.name === 'AbortError') {<br />
+              &emsp;&emsp;&emsp;console.log('Petició cancel·lada per trigar massa');<br />
+              &emsp;&emsp;} else {<br />
+              &emsp;&emsp;&emsp;console.error('Error:', error);<br />
+              &emsp;&emsp;}<br />
+              });<br />
+              <br />
+              // Cancel·lar la petició manualment (ex: als 3 segons)<br />
+              setTimeout(() => controller.abort(), 3000);
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 46: Què vol dir JSON?
+          </h4>
+          <p class="p-resposta">
+            JSON vol dir JavaScript Object Notation, és un format basat en text estàndard per representar dades
+            estructurades en la sintaxi d’objectes de JavaScript. És lleuger i fàcil d'enviar per xarxa.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // Exemple d'arxiu .json<br />
+              {<br />
+              &emsp;"usuari": "Aitor",<br />
+              &emsp;"edat": 25,<br />
+              &emsp;"actiu": true<br />
+              }
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 47: Quina és la diferència principal entre un objecte JS i un JSON?
+          </h4>
+          <p class="p-resposta">
+            Un objecte JS és una estructura de dades funcional en memòria (pot tenir mètodes i funcions). Un JSON és
+            purament un format de text d'intercanvi. Un JSON només pot tenir strings, ints, booleans, null, arrays i
+            altres JSONs (les claus han d'anar entre cometes dobles).
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // Objecte JS (Pot tenir funcions, i claus sense cometes)<br />
+              const objJS = {<br />
+              &emsp;nom: "Jesus",<br />
+              &emsp;saludar: function() { console.log("Hola!"); }<br />
+              };<br />
+              <br />
+              // JSON (Només text estructurat i dades)<br />
+              // '{"nom": "Jesus"}'
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 48: Com es converteix un String JSON en un objecte JS usable? (JSON.parse)
+          </h4>
+          <p class="p-resposta">
+            Per convertir una cadena de text JSON en un objecte utilitzable pel programa s’utilitza la funció
+            JSON.parse(text).
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              const textJson = '{"marca":"Ford","model":"Mustang"}';<br />
+              const cotxe = JSON.parse(textJson);<br />
+              <br />
+              console.log(cotxe.marca); // Imprimeix: "Ford"<br />
+              <br />
+              // Altres exemples de parse:<br />
+              JSON.parse("true"); // boolean: true<br />
+              JSON.parse('[1, 5, "fals"]'); // Array: [1, 5, "fals"]
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 49: Com es converteix un objecte JS en un String JSON per enviar-lo? (JSON.stringify)
+          </h4>
+          <p class="p-resposta">
+            Un objecte JS es converteix en format text JSON utilitzant el mètode JSON.stringify(objecte). És el pas
+            necessari abans d'enviar dades amb un POST.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              const usuari = {<br />
+              &emsp;nom: "Dani",<br />
+              &emsp;punts: 150<br />
+              };<br />
+              <br />
+              const dadesPerEnviar = JSON.stringify(usuari);<br />
+              console.log(dadesPerEnviar); <br />
+              // Imprimeix el text: '{"nom":"Dani","punts":150}'
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 50: Quins tipus de dades pot contenir un JSON?
+          </h4>
+          <p class="p-resposta">
+            Un JSON admet sis tipus de dades bàsiques: String (text), Number (números enters o decimals), Boolean
+            (true/false), Array (llistes), Object (altres estructures clau/valor) i valors Null.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              {<br />
+              &emsp;"text": "Hola",<br />
+              &emsp;"numero": 42.5,<br />
+              &emsp;"boolea": false,<br />
+              &emsp;"array": [1, 2, 3],<br />
+              &emsp;"objecte": { "sub_clau": "valor" },<br />
+              &emsp;"buit": null<br />
+              }
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 51: Es poden posar funcions dins d'un fitxer JSON?
+          </h4>
+          <p class="p-resposta">
+            No es poden posar funcions dintre d’un fitxer JSON perquè només és un format de text dissenyat per a
+            l'intercanvi de dades, no de lògica o comportament. Si intentes convertir una funció, s'ometrà.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              const obj = {<br />
+              &emsp;id: 1,<br />
+              &emsp;acció: function() { return "Saltar"; }<br />
+              };<br />
+              <br />
+              console.log(JSON.stringify(obj));<br />
+              // Resultat: '{"id":1}' (La funció desapareix)<br />
+              <br />
+              console.log(JSON.stringify([new Number(3), new String("fals")]));<br />
+              // Resultat: '[3,"fals"]'
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 52: Per què fem servir JSON i no XML avui dia?
+          </h4>
+          <p class="p-resposta">
+            Encara que la funció de tots dos és la mateixa (intercanvi de dades), JSON és més curt, menys pesat, i més
+            fàcil de llegir. A més, es pot parsejar de manera nativa i molt ràpida a JavaScript amb JSON.parse(), sense
+            necessitar llibreries pesades.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // Format JSON (Ràpid i net)<br />
+              { "usuari": "Aitor", "edat": 30 }<br />
+              <br />
+              &lt;!-- Format XML (Més verbós i feixuc) --&gt;<br />
+              &lt;usuari&gt;<br />
+              &emsp;&lt;nom&gt;Aitor&lt;/nom&gt;<br />
+              &emsp;&lt;edat&gt;30&lt;/edat&gt;<br />
+              &lt;/usuari&gt;
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 53: Quina és la principal diferència entre l'Event Loop del navegador i el de Node.js?
+          </h4>
+          <p class="p-resposta">
+            El navegador prioritza la renderització de la interfície gràfica i la interacció amb l'usuari. En canvi,
+            Node.js se centra en operacions I/O (entrada/sortida, com llegir fitxers del disc o bases de dades)
+            utilitzant una llibreria pròpia anomenada Libuv i un "pool de fils" per fons.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // Al navegador, l'Event loop gestiona el DOM<br />
+              document.getElementById('btn').addEventListener('click', ...);<br />
+              <br />
+              // A Node.js, l'Event loop està dissenyat per gestionar el sistema (I/O)<br />
+              const fs = require('fs');<br />
+              fs.readFile('arxiu.txt', (err, data) => {<br />
+              &emsp;console.log("Arxiu llegit");<br />
+              });
+            </p>
+          </div>
+          <img src="https://miro.medium.com/1*W0L_utHdZY9A0SiKL1twDA.png" alt="imatge JavaScript Event Loop: Browser vs Node.js">
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 54: El fetch és natiu en Node.js? Des de quina versió?
+          </h4>
+          <p class="p-resposta">
+            Sí, és natiu des de la versió 18.0.0. Abans calia instal·lar paquets de tercers com 'node-fetch' o 'axios',
+            però ara ja funciona igual que al navegador.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // En Node >= 18, això ja no dona error de "fetch is not defined"<br />
+              async function obtenirUsuarisServer() {<br />
+              &emsp;const res = await fetch('https://api.github.com/users');<br />
+              &emsp;const data = await res.json();<br />
+              &emsp;console.log(data);<br />
+              }
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 55: Si fas un fetch a una API des del navegador i et dona un error de "CORS", què està passant?
+          </h4>
+          <p class="p-resposta">
+            Els CORS (Cross-Origin Resource Sharing) és un mecanisme de seguretat dels navegadors que bloqueja peticions
+            web cap a un domini diferent de l'actual. Si l'API no té configurades les capçaleres per donar permís al teu
+            domini, el navegador bloquejarà la resposta.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // Error típic que apareix a la consola del navegador:<br />
+              // Access to fetch at 'https://api.altresite.com' from origin 'http://localhost:5500' <br />
+              // has been blocked by CORS policy.<br />
+              <br />
+              // Solució: El servidor ha de retornar aquesta capçalera:<br />
+              // Access-Control-Allow-Origin: *
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 56: Què signifiquen les sigles API i quina és la seva funció principal en el desenvolupament web?
+          </h4>
+          <p class="p-resposta">
+            Significa Application Programming Interface (Interfície de Programació d'Aplicacions). La seva funció és fer
+            de pont de connexió per permetre que dues aplicacions independents es comuniquin i intercanviïn dades de
+            forma automatitzada (ex: La teva web consumint dades de l'API del Temps).
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // La nostra aplicació JS parla amb l'aplicació de GitHub via API<br />
+              fetch('https://api.github.com/users/octocat')<br />
+              &emsp;.then(res => res.json())<br />
+              &emsp;.then(usuari => console.log(`Repos de l'usuari: ${usuari.public_repos}`));
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 57: Què fa que una API sigui considerada "REST"?
+          </h4>
+          <p class="p-resposta">
+            REST significa "Representational State Transfer". Una API es considera RESTful quan segueix uns principis
+            arquitectònics com operar sobre recursos identificats per URLs uniformes, ser "stateless" (cada petició és
+            independent) i utilitzar els mètodes HTTP estàndard (GET, POST, PUT, DELETE).
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // Rutes clàssiques i predictibles tipus REST:<br />
+              // GET /api/usuaris -> Obté llista d'usuaris<br />
+              // GET /api/usuaris/123 -> Obté detalls de l'usuari 123<br />
+              // POST /api/usuaris -> Crea un usuari nou<br />
+              // DELETE /api/usuaris/123 -> Esborra l'usuari 123
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 58: Relaciona els mètodes HTTP clàssics (GET, POST, PUT, DELETE) amb les accions de base de dades
+            (Llegir, Crear, Actualitzar, Esborrar).
+          </h4>
+          <p class="p-resposta">
+          <ul>
+            <li><b>GET:</b> Llegir (Read)</li>
+            <li><b>POST:</b> Crear (Create)</li>
+            <li><b>PUT / PATCH:</b> Actualitzar (Update)</li>
+            <li><b>DELETE:</b> Esborrar (Delete)</li>
+          </ul>
+          Són les famoses operacions CRUD.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              // Llegir (GET)<br />
+              fetch('/api/notes'); <br />
+              <br />
+              // Crear (POST)<br />
+              fetch('/api/notes', { method: 'POST', body: JSON.stringify(novaNota) });<br />
+              <br />
+              // Actualitzar (PUT)<br />
+              fetch('/api/notes/5', { method: 'PUT', body: JSON.stringify(canvisNota) });<br />
+              <br />
+              // Esborrar (DELETE)<br />
+              fetch('/api/notes/5', { method: 'DELETE' });
+            </p>
+          </div>
+        </div>
+
+        <div class="preguntes">
+          <h4 class="enunciat">
+            Pregunta 59: Si fem una petició GET a la URL https://api.botiga.com/productes/5, què estem demanant
+            exactament al servidor?
+          </h4>
+          <p class="p-resposta">
+            Estem demanant que ens retorni la informació detallada d'un recurs concret: específicament el producte que
+            tingui com a identificador únic (ID) el número 5.
+          </p>
+          <div class="codi">
+            <p class="p-codi">
+              fetch('https://api.botiga.com/productes/5')<br />
+              &emsp;.then(res => res.json())<br />
+              &emsp;.then(producte => {<br />
+              &emsp;&emsp;console.log("Nom del producte 5:", producte.nom);<br />
+              &emsp;&emsp;console.log("Preu del producte 5:", producte.preu);<br />
+              &emsp;});
+            </p>
+          </div>
+        </div>
+
+      </section>
+    </article>
+  </main>
+
+  <script src="./Scripts/script.js"></script>
+</body>
+
 </html>
