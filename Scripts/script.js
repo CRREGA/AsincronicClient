@@ -54,7 +54,7 @@ botoCercaEnunciat.addEventListener("click",() => {
 
         let aux = element.firstElementChild;
         
-        if(aux.textContent.includes(cercaEnunciat.value)){
+        if(aux.textContent.toLowerCase().includes(cercaEnunciat.value.toLowerCase())){
             element.style.display = "block";
         } else {
             element.style.display = "none";
@@ -68,7 +68,7 @@ botoCercaResposta.addEventListener("click",() => {
 
         let aux = element.firstElementChild.nextElementSibling;
 
-        if(aux.textContent.includes(cercaResposta.value)){
+        if(aux.textContent.toLowerCase().includes(cercaResposta.value.toLowerCase())){
             element.style.display = "block";
         } else {
             element.style.display = "none";
@@ -84,7 +84,7 @@ botoCercaCodi.addEventListener("click",() => {
 
         console.log(aux);
         
-        if(aux.textContent.includes(cercaCodi.value)){
+        if(aux.textContent.toLowerCase().includes(cercaCodi.value.toLowerCase())){
             element.style.display = "block";
         } else {
             element.style.display = "none";
