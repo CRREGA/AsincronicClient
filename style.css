@@ -1,0 +1,292 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap");
+
+:root {
+    --bg-1: #f2efe6;
+    --bg-2: #dbe6d8;
+    --paper: #fdfcf9;
+    --ink: #1f2a24;
+    --ink-soft: #5a665f;
+    --line: #cbd5c8;
+
+    --primary: #0f7b62;
+    --primary-2: #1b9f85;
+    --accent: #c1652a;
+
+    --radius-xl: 24px;
+    --radius-lg: 16px;
+    --radius-sm: 10px;
+
+    --shadow-soft: 0 10px 30px rgba(31, 42, 36, 0.08);
+    --shadow-card: 0 18px 45px rgba(31, 42, 36, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    color: var(--ink);
+    font-family: "Space Grotesk", "Segoe UI", sans-serif;
+    line-height: 1.55;
+    display: grid;
+    grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+    gap: 28px;
+    min-height: 100vh;
+    padding: 26px;
+    background:
+        radial-gradient(1000px 400px at 5% -10%, #ffffff 0%, transparent 70%),
+        radial-gradient(700px 360px at 85% 0%, #f1d7c0 0%, transparent 72%),
+        linear-gradient(140deg, var(--bg-1) 0%, var(--bg-2) 100%);
+}
+
+aside {
+    position: sticky;
+    top: 20px;
+    align-self: start;
+    background: color-mix(in srgb, var(--paper) 86%, white 14%);
+    border: 1px solid color-mix(in srgb, var(--line) 70%, white 30%);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+}
+
+#buscador {
+    padding: 18px;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+}
+
+#buscador::before {
+    content: "Filtres";
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(15, 123, 98, 0.12);
+    color: var(--primary);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+input,
+button {
+    font: inherit;
+}
+
+#buscador input[type="text"] {
+    width: 100%;
+    margin: 0 0 8px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 11px 12px;
+    background: #fff;
+    color: var(--ink);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#buscador input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-2);
+    box-shadow: 0 0 0 4px rgba(27, 159, 133, 0.14);
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    transition: transform 0.16s ease, filter 0.16s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.03);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.botos-buscar {
+    width: 100%;
+    margin: 0 0 14px;
+    padding: 10px 12px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-2));
+    color: #fff;
+    box-shadow: 0 6px 14px rgba(15, 123, 98, 0.24);
+}
+
+#button-neteja {
+    width: 100%;
+    margin-top: 4px;
+    padding: 11px 12px;
+    background: #f6e5d8;
+    color: #76451e;
+}
+
+#buscador > div {
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.filte-bloc {
+    padding: 9px 8px;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+}
+
+#resultados-busqueda {
+    max-height: calc(100vh - 320px);
+    overflow: auto;
+    padding: 16px 18px 18px;
+    scrollbar-width: thin;
+}
+
+main {
+    min-width: 0;
+}
+
+article {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+h1 {
+    margin: 8px 0 16px;
+    padding: 18px 20px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(110deg, #10352b 0%, #1d6a58 52%, #2f8a74 100%);
+    color: #f4fffb;
+    font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+    line-height: 1.22;
+    letter-spacing: 0.01em;
+    box-shadow: var(--shadow-soft);
+}
+
+.preguntes {
+    margin-bottom: 18px;
+    padding: 18px;
+    border-radius: var(--radius-lg);
+    border: 1px solid color-mix(in srgb, var(--line) 72%, white 28%);
+    background: color-mix(in srgb, var(--paper) 90%, white 10%);
+    box-shadow: var(--shadow-soft);
+    animation: reveal-up 0.45s ease both;
+}
+
+.preguntes:nth-child(even) {
+    background: color-mix(in srgb, var(--paper) 80%, #f3f8f4 20%);
+}
+
+.enunciat {
+    margin: 0 0 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border-left: 4px solid var(--accent);
+    background: #fff5ee;
+    color: #57321b;
+    font-size: 1.03rem;
+    line-height: 1.4;
+}
+
+.p-resposta {
+    margin: 0;
+    color: var(--ink);
+    font-size: 0.98rem;
+}
+
+.codi {
+    margin-top: 12px;
+    border-radius: 14px;
+    border: 1px solid #2a3a35;
+    background: linear-gradient(180deg, #16231f 0%, #0e1714 100%);
+    overflow-x: auto;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.p-codi {
+    margin: 0;
+    padding: 14px 16px;
+    font-family: "JetBrains Mono", "Consolas", monospace;
+    font-size: 0.89rem;
+    line-height: 1.5;
+    color: #d6fbe9;
+}
+
+b,
+strong {
+    color: #164b3c;
+}
+
+@keyframes reveal-up {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 1050px) {
+    body {
+        grid-template-columns: 290px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px;
+    }
+
+    .preguntes {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 860px) {
+    body {
+        grid-template-columns: 1fr;
+    }
+
+    aside {
+        position: static;
+    }
+
+    #resultados-busqueda {
+        max-height: 260px;
+    }
+}
+
+@media (max-width: 560px) {
+    body {
+        padding: 12px;
+    }
+
+    #buscador {
+        padding: 14px;
+    }
+
+    #buscador > div {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        padding: 16px;
+    }
+
+    .preguntes {
+        padding: 12px;
+    }
+
+    .enunciat {
+        font-size: 0.98rem;
+    }
+}
