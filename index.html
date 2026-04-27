@@ -389,7 +389,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 1: Què és una Promise en JavaScript?
+            Pregunta 21: Què és una Promise en JavaScript?
           </h4>
           <p class="p-resposta">
             Una Promise (promesa) és un objecte que representa l'eventual finalització (o el fracàs) d'una operació
@@ -407,7 +407,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 2: Quins són els 3 estats d'una promesa?
+            Pregunta 22: Quins són els 3 estats d'una promesa?
           </h4>
           <p class="p-resposta">
           <ul>
@@ -421,7 +421,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 3: Què vol dir que una promesa està "Pending"?
+            Pregunta 23: Què vol dir que una promesa està "Pending"?
           </h4>
           <p class="p-resposta">
             Una Promise en estat pending vol dir que encara està pendent de resoldre's. És a dir: ni ha acabat bé
@@ -444,7 +444,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 4: Com es passa de "Pending" a un estat d'èxit (Fulfilled)?
+            Pregunta 24: Com es passa de "Pending" a un estat d'èxit (Fulfilled)?
           </h4>
           <p class="p-resposta">
             Es passa a l'estat Fulfilled quan cridem la funció interna resolve(valor). Aquesta funció es passa com a
@@ -464,7 +464,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 5: Quin mètode s'utilitza per recollir el resultat d'una promesa quan va bé (.then)?
+            Pregunta 25: Quin mètode s'utilitza per recollir el resultat d'una promesa quan va bé (.then)?
           </h4>
           <p class="p-resposta">
             S'utilitza el mètode .then(). Aquest mètode rep una funció callback que s'executa automàticament quan la
@@ -481,7 +481,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 6: Com es gestiona un error en una promesa sense fer servir async/await (.catch)?
+            Pregunta 26: Com es gestiona un error en una promesa sense fer servir async/await (.catch)?
           </h4>
           <p class="p-resposta">
             Per gestionar aquests errors es fa servir molt el catch(). Com funciona? Tenim dos elements, el .then
@@ -509,7 +509,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 7: Pots encadenar diversos .then()? Si Per què serveix?
+            Pregunta 27: Pots encadenar diversos .then()? Si Per què serveix?
           </h4>
           <p class="p-resposta">
             Cada .then() retorna una nova Promise, així que pots seguir encadenant-ne tantes com vulguis. Quan acaba un
@@ -538,7 +538,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 8: Què retorna sempre un .then()?
+            Pregunta 28: Què retorna sempre un .then()?
           </h4>
           <p class="p-resposta">
             Un .then() sempre retorna una nova promesa. Això és el que permet l'encadenament (chaining). Si la funció
@@ -555,7 +555,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 9: Per què serveix el mètode Promise.all()?
+            Pregunta 29: Per què serveix el mètode Promise.all()?
           </h4>
           <p class="p-resposta">
             Serveix per gestionar múltiples promeses simultàniament. Rep un array de promeses i retorna una única
@@ -577,7 +577,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 10: Què passa si una de les promeses dins de Promise.all() falla?
+            Pregunta 30: Què passa si una de les promeses dins de Promise.all() falla?
           </h4>
           <p class="p-resposta">
             Si una de les promeses falla el Promise.all() farà un reject, que vol dir això, retorna l'error de la
@@ -587,7 +587,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 11: Què fa la paraula clau async abans d'una funció?
+            Pregunta 31: Què fa la paraula clau async abans d'una funció?
           </h4>
           <p class="p-resposta">
             1. Fa que la funció sempre retorni una Promise. Encara que tu retornis un valor "normal", JavaScript el
@@ -616,7 +616,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 12: Què retorna sempre una funció marcada amb async?
+            Pregunta 32: Què retorna sempre una funció marcada amb async?
           </h4>
           <p class="p-resposta">
             Quan una funció està marcada amb async, sempre torna una promesa.
@@ -634,7 +634,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 13: On es pot fer servir la paraula await?
+            Pregunta 33: On es pot fer servir la paraula await?
           </h4>
           <p class="p-resposta">
             La paraula clau await només es pot fer servir dins de funcions marcades amb la paraula async (o en el nivell
@@ -654,7 +654,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 14: Què fa realment l'await quan troba una promesa?
+            Pregunta 34: Què fa realment l'await quan troba una promesa?
           </h4>
           <p class="p-resposta">
             1. Pausa l'execució: Para l'execució de la funció async actual en la línia exacta, esperant a que la promesa
@@ -669,7 +669,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 15: Com es gestionen els errors dins d'una funció async/await?
+            Pregunta 35: Com es gestionen els errors dins d'una funció async/await?
           </h4>
           <p class="p-resposta">
             Es resolen envoltant el codi dins del "try catch". Quan la promesa falla await llença l'excepció i aquí
@@ -692,7 +692,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 16: Què passa si fas un await d'una funció que no retorna una promesa?
+            Pregunta 36: Què passa si fas un await d'una funció que no retorna una promesa?
           </h4>
           <p class="p-resposta">
             JavaScript ho torna automàticament com una promesa resolta, per fer-ho el codi pausa breument l'execució de
@@ -703,7 +703,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 17: Per què async/await es considera millor que els .then() encadenats?
+            Pregunta 37: Per què async/await es considera millor que els .then() encadenats?
           </h4>
           <p class="p-resposta">
             El principal motiu és la llegibilitat. També evita cadenes llargues i confuses, la gestió d'errors és més
@@ -737,7 +737,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 18: Es pot fer servir await fora d'una funció (Top-level await)? En quins casos?
+            Pregunta 38: Es pot fer servir await fora d'una funció (Top-level await)? En quins casos?
           </h4>
           <p class="p-resposta">
             Sí, sí que es pot, però en casos limitats: 1. Arxiu JS amb mòduls que contingui l'extensió ".mjs". 2. En
@@ -759,7 +759,7 @@
 
         <div class="preguntes">
           <h4 class="enunciat">
-            Pregunta 19: Com executaries dues funcions asíncrones en paral·lel dins d'una funció async?
+            Pregunta 39: Com executaries dues funcions asíncrones en paral·lel dins d'una funció async?
           </h4>
           <p class="p-resposta">
             Pots inicialitzar les funcions asíncrones abans de l'await perquè s'executin al mateix temps, o de manera
